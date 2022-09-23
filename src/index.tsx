@@ -6,6 +6,7 @@ import Reset from "./screens/Reset";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
+import ConfirmEmail from './screens/ConfirmEmail';
 
 ReactDOM.render(
   <ChakraProvider>
@@ -14,6 +15,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/reset" element={<Reset />} />
+          <Route path="/confirmEmail" element={<ConfirmEmail />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>

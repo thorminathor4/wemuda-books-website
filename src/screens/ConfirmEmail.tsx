@@ -9,11 +9,11 @@ import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
 
 type FormData = {
-  password: string;
-  confirmPassword: string;
+//   password: string;
+//   confirmPassword: string;
 };
 
-function Reset() {
+function ConfirmEmail() {
   const toast = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
   const token = searchParams.get("token");
@@ -26,17 +26,7 @@ function Reset() {
     window.location.href = "/";
   }
 
-  const schema: yup.SchemaOf<FormData> = yup.object({
-    password: yup
-      .string()
-      .min(6, "Too short")
-      .max(30, "Too long")
-      .required("Required"),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password")], "The password must match")
-      .required("Required"),
-  });
+  const schema: yup.SchemaOf<FormData> = yup.object({});
 
   const {
     register,
@@ -59,15 +49,13 @@ function Reset() {
 
     axios
       .post(
-        `https://localhost:7066/user/resetPassword?token=${token}`,
-        {
-          newPassword: data.password,
-        }
+        `https://localhost:7066/user/confirmEmail?token=${token}`,
+        {}
       )
       .then((res) => {
         toast({
           title: "Success",
-          description: "Your password has been changed",
+          description: "Your email has been confirmed",
           duration: 2000,
           isClosable: true,
           status: "success",
@@ -99,20 +87,6 @@ function Reset() {
               onSubmit={handleSubmit(onSubmit)}
               style={{ marginTop: "30px" }}
             >
-              <Input
-                label="New Password"
-                registeredForm={register("password")}
-                error={errors.password}
-                type="password"
-                placeholder="New password"
-              />
-              <Input
-                label="Confirm password"
-                registeredForm={register("confirmPassword")}
-                error={errors.confirmPassword}
-                type="password"
-                placeholder="Confirm password"
-              />
               <Button
                 bg="#12141A"
                 color="#fff"
@@ -125,13 +99,13 @@ function Reset() {
                 _hover={{ bg: "#12141A" }}
                 fontSize="14px"
               >
-                RESET
+                CONFIRM EMAIL
               </Button>
             </form>
           </>
          : (
           <h1 style={{ fontSize: "24px", fontWeight: "800" }}>
-            Your password has been successfully changed!
+            Your email has been confirmed successfully!
           </h1>
         )}
       </div>
@@ -139,4 +113,4 @@ function Reset() {
   );
 }
 
-export default Reset;
+export default ConfirmEmail;
