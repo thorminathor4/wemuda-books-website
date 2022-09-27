@@ -13,6 +13,9 @@ type FormData = {
 //   confirmPassword: string;
 };
 
+const baseUrl = process.env.BASE_URL ?? 'http://localhost:5001'
+console.log(baseUrl)
+
 function ConfirmEmail() {
   const toast = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,14 +45,14 @@ function ConfirmEmail() {
     setState({ ...state, loading: true });
 
     toast({
-      title: "Resetting your password.. Please wait",
+      title: "Confirming your email.. Please wait",
       duration: 5000,
       isClosable: true,
     });
 
     axios
       .post(
-        `https://localhost:7066/user/confirmEmail?token=${token}`,
+        (baseUrl) + `/user/confirmEmail?token=${token}`,
         {}
       )
       .then((res) => {
@@ -81,7 +84,7 @@ function ConfirmEmail() {
         {!state.success ? 
           <>
             <h1 style={{ fontSize: "26px", fontWeight: "800" }}>
-              Reset password
+              Confirm Email
             </h1>
             <form
               onSubmit={handleSubmit(onSubmit)}

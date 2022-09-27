@@ -13,6 +13,9 @@ type FormData = {
   confirmPassword: string;
 };
 
+const baseUrl = process.env.BASE_URL ?? 'http://localhost:5001'
+console.log(baseUrl)
+
 function Reset() {
   const toast = useToast();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -59,7 +62,7 @@ function Reset() {
 
     axios
       .post(
-        `https://localhost:7066/user/resetPassword?token=${token}`,
+        baseUrl + `/user/resetPassword?token=${token}`,
         {
           newPassword: data.password,
         }

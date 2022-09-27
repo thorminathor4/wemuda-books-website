@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Home from "./screens/Home";
 import Reset from "./screens/Reset";
+import ConfirmEmail from './screens/ConfirmEmail';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
-import ConfirmEmail from './screens/ConfirmEmail';
 
 ReactDOM.render(
   <ChakraProvider>
